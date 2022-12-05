@@ -1,8 +1,8 @@
 package models
 
 import (
-	"gopkg.in/validator.v2"
-	"gorm.io/gorm"
+	"gopkg.in/validator.v2" //importa biblioteca de validação
+	"gorm.io/gorm"          //importa biblioteca de banco de dados
 )
 
 type Product struct {
@@ -12,11 +12,13 @@ type Product struct {
 	Code       string `json:"code" validate:"nonzero"`
 }
 
-var Products []Product
+var Products []Product // cria um array de produtos
 
+// a função Validate vai validar os campos do produto e retornar um erro caso nao sejam preenchidos
 func Validade(product *Product) error {
 	if err := validator.Validate(product); err != nil {
 		return err
 	}
+
 	return nil
 }
