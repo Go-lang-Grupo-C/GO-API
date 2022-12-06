@@ -1,10 +1,17 @@
 package config
 
+import "github.com/gin-gonic/gin"
+
 //configuracoes do server
 const (
 	//Port is the port that the server will run on
 	PortServer = "8080"
 )
+
+type Server struct {
+	Port   string
+	Server *gin.Engine
+}
 
 //configuracoes do banco de dados
 const (
