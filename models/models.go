@@ -15,7 +15,7 @@ type Product struct {
 var Products []Product // cria um array de produtos
 
 // a função Validate vai validar os campos do produto e retornar um erro caso nao sejam preenchidos
-func Validade(product *Product) error {
+func Validate(product *Product) error {
 	if err := validator.Validate(product); err != nil {
 		return err
 	}
