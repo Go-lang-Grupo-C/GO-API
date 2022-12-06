@@ -5,7 +5,9 @@ services:
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=root      
+      - POSTGRES_DB=root   
+    restart: unless-stopped    
+    tty: true   
     ports:
       - "5432:5432"
     volumes:
