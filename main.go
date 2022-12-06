@@ -9,4 +9,5 @@ func main() {
 	fmt.Println("Eduardo Escrevreu aqui!")
 	fmt.Println("Dorizo Escrevreu aqui!")
 	fmt.Println("Dorizo vIADO!")
+	fmt.Println("Lisboa Gayzao!")
 }
