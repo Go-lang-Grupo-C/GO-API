@@ -8,7 +8,7 @@ import (
 // função que lista todos os produtos
 func Products(c *gin.Context) {
 	var products []models.Product
-	//models.DB.Find(&products)
+	//database.DB.Find(&products)
 	c.JSON(200, gin.H{"products": products})
 
 }
@@ -83,7 +83,7 @@ func UpdateProduct(c *gin.Context) {
 	//retorno o mensagem de sucesso
 	c.JSON(200, gin.H{"message": "Product updated is successfully"})
 }
-
+//função de deletar produto
 func DeleteProduct(c *gin.Context) {
 	var product models.Product
 	//id := c.Params.ByName("id")
@@ -95,6 +95,7 @@ func DeleteProduct(c *gin.Context) {
 		return
 	}
 	//database.DB.Delete(&product)
+	
 
 	//retorno o mensagem de sucesso
 	c.JSON(200, gin.H{"message": "Product deleted is successfully"})
