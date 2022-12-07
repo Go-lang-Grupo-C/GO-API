@@ -9,7 +9,7 @@ import (
 // função que lista todos os produtos
 func Products(c *gin.Context) {
 	var products []models.Product
-	//database.DB.Find(&products)
+	database.DB.Find(&products)
 	c.JSON(200, gin.H{"products": products})
 
 }
@@ -17,8 +17,8 @@ func Products(c *gin.Context) {
 // função que busca somente um produto por ID via paramentro
 func SearchForProduct(c *gin.Context) {
 	var product models.Product
-	//id := c.Params.ByName("id")
-	//database.DB.First(&product, id)
+	id := c.Params.ByName("id")
+	database.DB.First(&product, id)
 
 	//valido se o prodtuo existe caso ele for id 0 retorna um erro
 	if product.ID == 0 {
@@ -61,8 +61,8 @@ func CreateProduct(c *gin.Context) {
 // editar o produto pego ele via paramentro pelo ID
 func UpdateProduct(c *gin.Context) {
 	var product models.Product
-	//id := c.Params.ByName("id")
-	//database.DB.First(&product, id)
+	id := c.Params.ByName("id")
+	database.DB.First(&product, id)
 
 	//valido se o produto existe
 	if product.ID == 0 {
@@ -79,7 +79,7 @@ func UpdateProduct(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
-	//database.DB.Save(&product)
+	database.DB.Save(&product)
 
 	//retorno o mensagem de sucesso
 	c.JSON(200, gin.H{"message": "Product updated is successfully"})
@@ -88,15 +88,15 @@ func UpdateProduct(c *gin.Context) {
 // função de deletar produto
 func DeleteProduct(c *gin.Context) {
 	var product models.Product
-	//id := c.Params.ByName("id")
-	//database.DB.First(&product, id)
+	id := c.Params.ByName("id")
+	database.DB.First(&product, id)
 
 	//valido se o produto existe
 	if product.ID == 0 {
 		c.JSON(404, gin.H{"message": "Product not found"})
 		return
 	}
-	//database.DB.Delete(&product)
+	database.DB.Delete(&product)
 
 	//retorno o mensagem de sucesso
 	c.JSON(200, gin.H{"message": "Product deleted is successfully"})
