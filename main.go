@@ -1,10 +1,13 @@
 package main
 
-import "github.com/Go-lang-Grupo-C/GO-API/server"
+import (
+	"github.com/Go-lang-Grupo-C/GO-API/database"
+	"github.com/Go-lang-Grupo-C/GO-API/server"
+)
 
 func main() {
 
-	//concet database
+	database.ConnectDB()
 
 	// new sever
 	sever := server.NewServer()

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/Go-lang-Grupo-C/GO-API/database"
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
 )
@@ -45,7 +46,7 @@ func CreateProduct(c *gin.Context) {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
-	//database.DB.Create(&product)
+	database.DB.Create(&product)
 
 	//retorno o produto criado
 	c.JSON(200, gin.H{
@@ -83,7 +84,8 @@ func UpdateProduct(c *gin.Context) {
 	//retorno o mensagem de sucesso
 	c.JSON(200, gin.H{"message": "Product updated is successfully"})
 }
-//função de deletar produto
+
+// função de deletar produto
 func DeleteProduct(c *gin.Context) {
 	var product models.Product
 	//id := c.Params.ByName("id")
@@ -95,7 +97,6 @@ func DeleteProduct(c *gin.Context) {
 		return
 	}
 	//database.DB.Delete(&product)
-	
 
 	//retorno o mensagem de sucesso
 	c.JSON(200, gin.H{"message": "Product deleted is successfully"})
