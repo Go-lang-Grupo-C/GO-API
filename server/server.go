@@ -21,7 +21,7 @@ func NewServer() *Server {
 	}
 }
 
-//config cors gin
+
 
 func (s Server) Start() {
 	router := routes.ConfigureRoutes(s.server)
