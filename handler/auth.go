@@ -1,6 +1,5 @@
 package handler
 
-
 import (
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
@@ -17,7 +16,7 @@ func Login(c *gin.Context) {
 	}
 
 	if user.Username != models.NewAdmin().Username || user.Password != models.NewAdmin().Password {
-		c.JSON(401, gin.H{"status": "ze"})
+		c.JSON(401, gin.H{"status": "unauthorized"})
 		return
 	}
 
