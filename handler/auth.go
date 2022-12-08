@@ -1,6 +1,6 @@
 package handler
 
-//gin auth
+
 import (
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
