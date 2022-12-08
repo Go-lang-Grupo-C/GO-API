@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/Go-lang-Grupo-C/GO-API/config"
 	"github.com/Go-lang-Grupo-C/GO-API/controllers"
+	"github.com/Go-lang-Grupo-C/GO-API/handler"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +18,10 @@ func ConfigureRoutes(router *gin.Engine) *gin.Engine {
 			products.PATCH("/:id", controllers.UpdateProduct)
 			products.POST("/", controllers.CreateProduct)
 			products.DELETE("/:id", controllers.DeleteProduct)
+		}
+		users := main.Group(config.Users)
+		{
+			users.POST("/login", handler.Login)
 		}
 	}
 
