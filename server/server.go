@@ -23,7 +23,7 @@ func NewServer() *Server {
 
 func (s Server) Start() {
 	router := routes.ConfigureRoutes(s.server)
-	router.Use(cors.Default())
+	router.Use(cors.New())
 	router.Run(":" + s.Port)
 	log.Println("Server running on port: " + s.Port)
 
