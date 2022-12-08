@@ -2,7 +2,11 @@ module github.com/Go-lang-Grupo-C/GO-API
 
 go 1.19
 
-require gorm.io/gorm v1.24.2
+require (
+	github.com/gorilla/mux v1.8.0
+	github.com/urfave/negroni v1.0.0
+	gorm.io/gorm v1.24.2
+)
 
 require (
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
