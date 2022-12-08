@@ -9,7 +9,7 @@ import (
 // função que lista todos os produtos
 func Products(c *gin.Context) {
 
-	token := c.Request.Header.Get("Authorization")
+	token := c.GetHeader("Authorization")
 	if token != models.USER_TOKEN {
 		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
 		return
