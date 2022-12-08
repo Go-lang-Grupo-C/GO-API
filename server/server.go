@@ -26,7 +26,7 @@ func NewServer() *Server {
 func (s Server) Start() {
 	router := routes.ConfigureRoutes(s.server)
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"localhost:7070"},
+		AllowOrigins:     []string{"http://localhost:7070"},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
 		AllowCredentials: true,
