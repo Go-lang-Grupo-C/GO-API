@@ -7,7 +7,6 @@ import (
 	"os"
 	"path"
 
-	"github.com/Go-lang-Grupo-C/GO-API/server"
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
 )
@@ -37,15 +36,10 @@ func AssetHandler(prefix, root string) http.Handler {
 	return http.StripPrefix(prefix, http.FileServer(http.FS(handler)))
 }
 
-func NewWebUI() http.Handler {
-	router := mux.NewRouter()
+func RegisterUIHandlers(r *mux.Router, n *negroni.Negroni) {
 
-	router.PathPrefix("/api/v1").Handler(http.StripPrefix("/api/v1", server.NewServer()))
+	r.PathPrefix("/webui/{_dummy:.*}").Handler(n.With(
+		negroni.Wrap(AssetHandler("/webui", "dist/spa/")),
+	)).Methods("GET", "OPTIONS")
 
-	router.PathPrefix("/").Handler(AssetHandler("/api/v1", "dist/spa/"))
-
-	n := negroni.Classic()
-	n.UseHandler(router)
-
-	return n
 }

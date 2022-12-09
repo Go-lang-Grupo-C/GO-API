@@ -16,4 +16,4 @@ type Token struct {
 	Token string `json:"token"`
 }
 
-const USER_TOKEN = ""
+const USER_TOKEN = "123"
