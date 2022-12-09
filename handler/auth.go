@@ -10,7 +10,7 @@ func Login(c *gin.Context) {
 	var user models.User
 	var token models.Token
 
-	if err := c.ShouldBindJSON(&user); err != nil {
+	if err := c.ShouldBind(&user); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
@@ -22,5 +22,6 @@ func Login(c *gin.Context) {
 
 	token.Token = models.USER_TOKEN
 
-	c.JSON(200, token)
+	c.Next()
+	c.JSON(200, gin.H{"token": token.Token})
 }

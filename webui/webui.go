@@ -1,45 +1,21 @@
 package webui
 
 import (
-	"embed"
-	"io/fs"
 	"net/http"
-	"os"
-	"path"
 
-	"github.com/gorilla/mux"
-	"github.com/urfave/negroni"
+	"github.com/gin-contrib/static"
+	"github.com/gin-gonic/gin"
 )
 
-//go:embed dist/*
-var Assets embed.FS
+func RegisterUIHandlers(router *gin.Engine) {
 
-type fsFunc func(name string) (fs.File, error)
+	router.LoadHTMLGlob("./webui/dist/spa/*.html")
 
-func (f fsFunc) Open(name string) (fs.File, error) {
-	return f(name)
-}
+	router.Use(static.Serve("/webui", static.LocalFile("./webui/dist/spa/", true)))
+	router.Use(static.Serve("/webui/assets", static.LocalFile("./webui/dist/spa/assets/", true)))
+	router.Use(static.Serve("/webui/icons", static.LocalFile("./webui/dist/spa/icons/", true)))
 
-func AssetHandler(prefix, root string) http.Handler {
-
-	handler := fsFunc(func(name string) (fs.File, error) {
-		assetPath := path.Join(root, name)
-
-		f, err := Assets.Open(assetPath)
-		if os.IsNotExist(err) {
-			return Assets.Open("dist/spa/index.html")
-		}
-
-		return f, err
+	router.GET("/webui", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.html", nil)
 	})
-
-	return http.StripPrefix(prefix, http.FileServer(http.FS(handler)))
-}
-
-func RegisterUIHandlers(r *mux.Router, n *negroni.Negroni) {
-
-	r.PathPrefix("/webui/{_dummy:.*}").Handler(n.With(
-		negroni.Wrap(AssetHandler("/webui", "dist/spa/")),
-	)).Methods("GET", "OPTIONS")
-
 }

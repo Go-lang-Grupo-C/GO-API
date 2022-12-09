@@ -16,8 +16,8 @@ const (
 	//api name
 	ApiName = "api/v1"
 	//products
-	Products = "products"
+	Products = "products/"
 
 	//users
-	Users = "users"
+	Users = "user"
 )
