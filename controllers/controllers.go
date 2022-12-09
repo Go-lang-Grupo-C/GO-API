@@ -11,7 +11,7 @@ func Products(c *gin.Context) {
 
 	token := c.GetHeader("Authorization")
 	if token != models.USER_TOKEN {
-		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized Products "})
+		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
 		return
 	}
 
@@ -25,7 +25,7 @@ func Products(c *gin.Context) {
 func SearchForProduct(c *gin.Context) {
 	token := c.GetHeader("Authorization")
 	if token != models.USER_TOKEN {
-		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized SearchForProduct"})
+		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
 		return
 	}
 	var product models.Product
@@ -49,7 +49,7 @@ func SearchForProduct(c *gin.Context) {
 func CreateProduct(c *gin.Context) {
 	token := c.GetHeader("Authorization")
 	if token != models.USER_TOKEN {
-		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized CreateProduct"})
+		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
 		return
 	}
 	var product models.Product
@@ -79,7 +79,7 @@ func CreateProduct(c *gin.Context) {
 func UpdateProduct(c *gin.Context) {
 	token := c.GetHeader("Authorization")
 	if token != models.USER_TOKEN {
-		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized UpdateProduct"})
+		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
 		return
 	}
 	var product models.Product
@@ -111,7 +111,7 @@ func UpdateProduct(c *gin.Context) {
 func DeleteProduct(c *gin.Context) {
 	token := c.GetHeader("Authorization")
 	if token != models.USER_TOKEN {
-		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized DeleteProduct"})
+		c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
 		return
 	}
 	var product models.Product
