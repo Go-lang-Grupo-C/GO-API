@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"strconv"
+
 	"github.com/Go-lang-Grupo-C/GO-API/database"
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
@@ -8,8 +10,6 @@ import (
 
 // função que lista todos os produtos
 func Products(c *gin.Context) {
-
-
 
 	var products []models.Product
 	database.DB.Find(&products)
@@ -21,8 +21,10 @@ func Products(c *gin.Context) {
 func SearchForProduct(c *gin.Context) {
 
 	var product models.Product
-	id := c.Params.ByName("id")
-	database.DB.First(&product, id)
+	id := c.Param("id")
+	newId, _ := strconv.Atoi(id)
+
+	database.DB.First(&product, newId)
 
 	//valido se o prodtuo existe caso ele for id 0 retorna um erro
 	if product.ID == 0 {
