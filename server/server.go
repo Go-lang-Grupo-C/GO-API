@@ -2,16 +2,21 @@ package server
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/Go-lang-Grupo-C/GO-API/config"
 	"github.com/Go-lang-Grupo-C/GO-API/server/routes"
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 type Server struct {
 	Port   string
 	server *gin.Engine
+}
+
+// ServeHTTP implements http.Handler
+func (*Server) ServeHTTP(http.ResponseWriter, *http.Request) {
+	panic("unimplemented")
 }
 
 func NewServer() *Server {
@@ -21,16 +26,8 @@ func NewServer() *Server {
 	}
 }
 
-
-
 func (s Server) Start() {
 	router := routes.ConfigureRoutes(s.server)
-	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:7070"},
-		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE"},
-		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
-		AllowCredentials: true,
-	}))
 	router.Run(":" + s.Port)
 	log.Println("Server running on port: " + s.Port)
 
