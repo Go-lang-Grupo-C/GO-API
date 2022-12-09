@@ -9,11 +9,7 @@ import (
 // função que lista todos os produtos
 func Products(c *gin.Context) {
 
-	// token := c.GetHeader("token")
-	// if token != models.USER_TOKEN {
-	// 	c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
-	// 	return
-	// }
+
 
 	var products []models.Product
 	database.DB.Find(&products)
@@ -23,11 +19,7 @@ func Products(c *gin.Context) {
 
 // função que busca somente um produto por ID via paramentro
 func SearchForProduct(c *gin.Context) {
-	// token := c.GetHeader("token")
-	// if token != models.USER_TOKEN {
-	// 	c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
-	// 	return
-	// }
+
 	var product models.Product
 	id := c.Params.ByName("id")
 	database.DB.First(&product, id)
@@ -47,11 +39,7 @@ func SearchForProduct(c *gin.Context) {
 
 // criando novo produto
 func CreateProduct(c *gin.Context) {
-	// token := c.GetHeader("token")
-	// if token != models.USER_TOKEN {
-	// 	c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
-	// 	return
-	// }
+
 	var product models.Product
 	//valido se o produto foi preenchido corretamente via corpo da requisição JSON
 	if err := c.ShouldBind(&product); err != nil {
@@ -77,11 +65,7 @@ func CreateProduct(c *gin.Context) {
 
 // editar o produto pego ele via paramentro pelo ID
 func UpdateProduct(c *gin.Context) {
-	// token := c.GetHeader("token")
-	// if token != models.USER_TOKEN {
-	// 	c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
-	// 	return
-	// }
+
 	var product models.Product
 	id := c.Params.ByName("id")
 	database.DB.First(&product, id)
@@ -109,11 +93,7 @@ func UpdateProduct(c *gin.Context) {
 
 // função de deletar produto
 func DeleteProduct(c *gin.Context) {
-	// token := c.GetHeader("token")
-	// if token != models.USER_TOKEN {
-	// 	c.AbortWithStatusJSON(401, gin.H{"status": "unauthorized"})
-	// 	return
-	// }
+
 	var product models.Product
 	id := c.Params.ByName("id")
 	database.DB.First(&product, id)
