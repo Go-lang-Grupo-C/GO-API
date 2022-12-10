@@ -14,10 +14,15 @@ func ConfigureRoutes(router *gin.Engine) *gin.Engine {
 		products := main.Group(config.Products)
 		{
 			products.GET("/", controllers.Products)
-			products.GET("/:id", controllers.SearchForProduct)
-			products.PATCH("/:id", controllers.UpdateProduct)
-			products.POST("/", controllers.CreateProduct)
-			products.DELETE("/:id", controllers.DeleteProduct)
+
+		}
+		product := main.Group(config.Product)
+		{
+			product.GET("/:id", controllers.SearchForProduct)
+			product.PATCH("/:id", controllers.UpdateProduct)
+			product.POST("/", controllers.CreateProduct)
+			product.DELETE("/:id", controllers.DeleteProduct)
+
 		}
 		users := main.Group(config.Users)
 		{

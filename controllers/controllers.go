@@ -21,22 +21,18 @@ func Products(c *gin.Context) {
 func SearchForProduct(c *gin.Context) {
 
 	var product models.Product
-	id := c.Param("id")
-	newId, _ := strconv.Atoi(id)
+	id := c.Params.ByName("ID")
+	NewId, _ := strconv.Atoi(id)
 
-	database.DB.First(&product, newId)
-
+	database.DB.First(&product, NewId)
 	//valido se o prodtuo existe caso ele for id 0 retorna um erro
 	if product.ID == 0 {
 		c.JSON(404, gin.H{"message": "Product not found"})
 		return
 	}
-	c.JSON(200, gin.H{
-		//me tras apenas codigo, nome e preço
-		"code:":  product.Code,
-		"name:":  product.Name,
-		"price:": product.Price,
-	})
+
+	//retorno o produto
+	c.JSON(200, product)
 }
 
 // criando novo produto
@@ -69,7 +65,7 @@ func CreateProduct(c *gin.Context) {
 func UpdateProduct(c *gin.Context) {
 
 	var product models.Product
-	id := c.Params.ByName("id")
+	id := c.Params.ByName("ID")
 	database.DB.First(&product, id)
 
 	//valido se o produto existe
@@ -97,7 +93,7 @@ func UpdateProduct(c *gin.Context) {
 func DeleteProduct(c *gin.Context) {
 
 	var product models.Product
-	id := c.Params.ByName("id")
+	id := c.Params.ByName("ID")
 	database.DB.First(&product, id)
 
 	//valido se o produto existe
