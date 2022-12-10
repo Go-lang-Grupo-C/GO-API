@@ -3,13 +3,11 @@ module github.com/Go-lang-Grupo-C/GO-API
 go 1.19
 
 require (
-	github.com/gorilla/mux v1.8.0
-	github.com/urfave/negroni v1.0.0
+	github.com/gin-contrib/static v0.0.1
 	gorm.io/gorm v1.24.2
 )
 
 require (
-	github.com/gin-contrib/static v0.0.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.13.0 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -21,7 +19,6 @@ require (
 )
 
 require (
-	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-playground/locales v0.14.0 // indirect
@@ -41,7 +38,6 @@ require (
 	golang.org/x/net v0.3.0 // indirect
 	golang.org/x/sys v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
-	golang.org/x/tools v0.4.0
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/validator.v2 v2.0.1
 	gopkg.in/yaml.v2 v2.4.0 // indirect
