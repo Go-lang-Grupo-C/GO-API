@@ -18,7 +18,7 @@ func Products(c *gin.Context) {
 }
 
 // função que busca somente um produto por ID via paramentro
-func SearchForProduct(c *gin.Context) {
+func jSearchForProduct(c *gin.Context) {
 
 	var product models.Product
 	id := c.Params.ByName("ID")
