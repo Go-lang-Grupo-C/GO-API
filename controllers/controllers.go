@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"strconv"
-
 	"github.com/Go-lang-Grupo-C/GO-API/database"
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
@@ -19,20 +17,14 @@ func Products(c *gin.Context) {
 
 // função que busca somente um produto por ID via paramentro
 func SearchForProduct(c *gin.Context) {
-
 	var product models.Product
-	id := c.Params.ByName("ID")
-	NewId, _ := strconv.Atoi(id)
-
-	database.DB.First(&product, NewId)
-	//valido se o prodtuo existe caso ele for id 0 retorna um erro
+	id := c.Params.ByName("id")
+	database.DB.First(&product, id)
 	if product.ID == 0 {
 		c.JSON(404, gin.H{"message": "Product not found"})
 		return
 	}
-
-	//retorno o produto
-	c.JSON(200, product)
+	c.JSON(200, gin.H{"product": product})
 }
 
 // criando novo produto
