@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"strconv"
-
 	"github.com/Go-lang-Grupo-C/GO-API/database"
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
@@ -73,10 +71,7 @@ func UpdateProduct(c *gin.Context) {
 func DeleteProduct(c *gin.Context) {
 	var product models.Product
 	id := c.Param("id")
-	intId, _ := strconv.Atoi(id)
-
-	database.DB.First(&product, intId)
-
+	database.DB.First(&product, id)
 	if product.ID == 0 {
 		c.JSON(404, gin.H{"message": "Product not found"})
 		return
