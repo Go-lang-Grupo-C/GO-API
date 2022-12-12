@@ -1,15 +1,20 @@
 package models
 
 import (
+	"time"
+
 	"gopkg.in/validator.v2" //importa biblioteca de validação
-	"gorm.io/gorm"          //importa biblioteca de banco de dados
+	"gorm.io/gorm"
 )
 
 type Product struct {
-	gorm.Model        // o gorm ja traz o id unico e o created_at e o updated_at
-	Name       string `json:"name" validate:"nonzero"`
-	Price      uint   `json:"price" validate:"nonzero"`
-	Code       string `json:"code" validate:"nonzero"`
+	ID        uint           `json:"id" gorm:"primarykey" AutoIncrement:"true"`
+	Name      string         `json:"name" validate:"nonzero"`
+	Price     uint           `json:"price" validate:"nonzero"`
+	Code      string         `json:"code" validate:"nonzero"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `json:"deleted_at"`
 }
 
 var Products []Product // cria um array de produtos
@@ -22,4 +27,3 @@ func Validate(product *Product) error {
 
 	return nil
 }
-

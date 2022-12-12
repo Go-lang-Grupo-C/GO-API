@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"strconv"
+
 	"github.com/Go-lang-Grupo-C/GO-API/database"
 	"github.com/Go-lang-Grupo-C/GO-API/models"
 	"github.com/gin-gonic/gin"
@@ -9,21 +11,20 @@ import (
 // função que lista todos os produtos
 func Products(c *gin.Context) {
 	var products []models.Product
-	database.DB.Find(&products)
+	database.DB.Order("id").Find(&products)
 	c.JSON(200, gin.H{"list": products})
-
 }
 
 // função que busca somente um produto por ID via paramentro
 func SearchForProduct(c *gin.Context) {
 	var product models.Product
-	id := c.Params.ByName("id")
+	id := c.Param("id")
 	database.DB.First(&product, id)
 	if product.ID == 0 {
 		c.JSON(404, gin.H{"message": "Product not found"})
 		return
 	}
-	c.JSON(200, gin.H{"product": product})
+	c.JSON(200, product)
 }
 
 // criando novo produto
@@ -71,12 +72,16 @@ func UpdateProduct(c *gin.Context) {
 // função de deletar produto
 func DeleteProduct(c *gin.Context) {
 	var product models.Product
-	id := c.Params.ByName("ID")
-	database.DB.First(&product, id)
+	id := c.Param("id")
+	intId, _ := strconv.Atoi(id)
+
+	database.DB.First(&product, intId)
+
 	if product.ID == 0 {
 		c.JSON(404, gin.H{"message": "Product not found"})
 		return
 	}
 	database.DB.Delete(&product)
 	c.JSON(200, gin.H{"message": "Product deleted is successfully"})
+
 }

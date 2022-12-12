@@ -19,7 +19,7 @@ func ConfigureRoutes(router *gin.Engine) *gin.Engine {
 		product := main.Group(config.Product)
 		{
 			product.GET("/:id", controllers.SearchForProduct)
-			product.PATCH("/:id", controllers.UpdateProduct)
+			product.PUT("/:id", controllers.UpdateProduct)
 			product.POST("/", controllers.CreateProduct)
 			product.DELETE("/:id", controllers.DeleteProduct)
 

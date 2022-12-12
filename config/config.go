@@ -1,24 +1,23 @@
 package config
 
-//configuracoes do server
+//porta que o servidor Gin ira rodar ->
 const (
-	//Port is the port that the server will run on
 	PortServer = "8080"
 )
 
-//configuracoes do banco de dados
+//configuracoes do banco de dados, strinh de conexão contendo o host, user, password, dbname, port e sslmode
 const (
 	StringConectDatabase = "host=localhost user=root password=root dbname=root port=5432 sslmode=disable"
 )
 
 //configuracoes das rotas
 const (
-	//api name
+	//nome main das rotas/nome da api
 	ApiName = "api/v1"
-	//products
+	//nome das rotas
 	Products = "products/"
 	Product  = "product"
 
-	//users
+	//nome da rota do usuario
 	Users = "user"
 )
