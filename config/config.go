@@ -21,3 +21,10 @@ const (
 	//nome da rota do usuario
 	Users = "user"
 )
+
+// config open browser
+
+const (
+	//url do browser
+	UrlBrowser = "http://localhost:8080/webui/"
+)

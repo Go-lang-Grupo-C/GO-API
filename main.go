@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/Go-lang-Grupo-C/GO-API/config"
 	"github.com/Go-lang-Grupo-C/GO-API/database"
 	"github.com/Go-lang-Grupo-C/GO-API/server"
 	"github.com/Go-lang-Grupo-C/GO-API/server/service"
@@ -15,7 +16,7 @@ func main() {
 
 	// start server
 
-	service.Openbrowser("http://localhost:8080/webui/")
+	service.Openbrowser(config.UrlBrowser)
 	sever.Start()
 
 }
