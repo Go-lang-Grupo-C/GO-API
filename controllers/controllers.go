@@ -10,6 +10,10 @@ import (
 // função que lista todos os produtos
 func Products(c *gin.Context) {
 
+	if !handler.Auth(c) {
+		return
+	}
+
 	var products []models.Product
 	database.DB.Order("id").Find(&products)
 	c.JSON(200, gin.H{"list": products})
