@@ -5,23 +5,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// func login
-func Login(c *gin.Context) {
-	var user models.User
-	var token models.Token
+func Auth(c *gin.Context) bool {
 
-	if err := c.ShouldBind(&user); err != nil {
-		c.JSON(400, gin.H{"error": err.Error()})
-		return
+	token := c.GetHeader("Authorization")
+
+	if len(token) > 0 && (token[7:] == models.USER_TOKEN) {
+		return true
+	} else {
+		c.JSON(401, gin.H{"message": "Unauthorized"})
+		return false
 	}
 
-	if user.Username != models.NewAdmin().Username || user.Password != models.NewAdmin().Password {
-		c.JSON(401, gin.H{"status": "unauthorized"})
-		return
-	}
-
-	token.Token = models.USER_TOKEN
-
-	c.Next()
-	c.JSON(200, gin.H{"token": token.Token})
 }
